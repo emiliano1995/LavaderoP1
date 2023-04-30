@@ -1,0 +1,14 @@
+<h1>Productos que usamos <small> SILISUR y MEGUIARS </small></h1>
+<hr>
+
+<!-- *ngFor="let heroe of heroes; let i = index" -->
+
+<div class="row row-cols-1 row-cols-md-3 g-4 ">
+  <app-heroe-tarjeta (heroeSeleccionado)="verHeroe($event)" [heroe]="foo" [index]="i" *ngFor="let foo of heroes; let i = index">
+    
+  </app-heroe-tarjeta>
+</div>
+
+<hr>
+
+    
