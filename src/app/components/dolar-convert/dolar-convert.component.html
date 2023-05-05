@@ -35,6 +35,25 @@
     </div>
 </div>
 
+
+<div class="card mb-5 animated fadeIn fast">
+  <div class="card-body">
+    <div class="card-header mb-3">
+      Conversor BTC -> ARS
+    </div>
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control mb-3" id="inputValorBtcArs" placeholder="Ingrese un valor en BTC">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="obtenerValorBtcUsd()">Convertir a ARS</button>
+    </form>
+    <div *ngIf="resultadoBtcArs" class="mt-3">
+      <h4>Resultado: {{btc}}</h4>
+      <p>{{ resultadoBtcArs | number: '1.2-2' }} ARS</p>
+    </div>
+  </div>
+</div>
+
 <!-- <div class="container mt-5">
   <h1>Calculadora de IMC</h1>
   <form>
@@ -55,7 +74,7 @@
 </div> -->
 
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="card">
     <div class="card-header">
       Calculadora de IMC
@@ -80,5 +99,37 @@
   </div>
 </div>
 
+
+
+
+<div class="card mb-5 animated fadeIn fast">
+  <div class="card-body">
+    <div class="form-group">
+    <div class="card-header mb-3">
+      Conversion de moneda a eleccion
+    </div>
+    </div>
+    <form>
+      <label class="mb-2" for="selectOptions">Selecciona una divisa:</label>
+      <select class="form-control mb-3" id="selectOptions" >
+        <option value="0">Dolar Oficial</option>
+        <option value="1">Dolar Blue</option>
+        <option value="2">Dolar Soja</option>
+        <option value="3">Dolar CCL</option>
+        <option value="4">Dolar Bolsa</option>
+        <option value="5">Bitcoin</option>
+        <option value="6">Dolar Turista</option>
+      </select>
+      <div class="form-group">
+        <input type="text" class="form-control mb-3" id="inputValor" placeholder="Ingrese un valor">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="obtenerValor(currency)">Convertir a ARS</button>
+    </form>
+    <div *ngIf="resultado" class="mt-3">
+      <h4>Resultado:</h4>
+      <p>{{ resultado | number: '1.2-2' }} ARS</p>
+    </div>
+  </div>
+</div>
 
   

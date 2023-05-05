@@ -16,7 +16,15 @@ export class DolarConvertComponent implements OnInit {
   resultadoArs: number = 0;
   usdCompra:number = 0;
   usdVenta:number = 0;
+  valorBtcArs: number = 0;
+  resultadoBtcArs:number = 0;
+  btc:number = 0;
+  selectedOption: number = 0;
+  currency:number = 0;
+  resultado:number = 0;
+  valor:number = 0;
 
+  
   //Calculador IMC
   weight: number = 0;
   height: number = 0;
@@ -49,10 +57,31 @@ export class DolarConvertComponent implements OnInit {
     this.usdCompra = parseFloat(this.divisas[1].casa.compra);
   }
 
+  obtenerValorBtcUsd() {
+    this.valorBtcArs = parseFloat((<HTMLInputElement>document.getElementById('inputValorBtcArs')).value)
+    console.log(typeof this.valorBtcArs);
+    console.log('El valorArs ingresado es: ' + this.valorBtcArs);
+    this.resultadoBtcArs = this.valorBtcArs / parseFloat(this.divisas[5].casa.compra);
+    console.log('La conversión de ARS a USD(Blue Comp) es: ' + this.valorBtcArs);
+    this.btc = parseFloat(this.divisas[5].casa.compra);
+  }
+
   calculateIMC() {
     const heightInMeters = parseInt((<HTMLInputElement>document.getElementById('height')).value) / 100;
     this.imc = parseInt((<HTMLInputElement>document.getElementById('weight')).value) / (heightInMeters * heightInMeters);
     this.imcInterpretation = this.getInterpretation(this.imc);
+  }
+
+
+  obtenerValor(currency:number) {
+    this.currency = parseInt((<HTMLInputElement>document.getElementById('selectOptions')).value)
+    this.valor = parseFloat((<HTMLInputElement>document.getElementById('inputValor')).value)
+    console.log(typeof this.valor);
+    console.log('El valor ingresado es: ' + this.valor);
+    console.log('la moneda elegida es '+this.currency);
+    this.resultado = this.valor * parseFloat(this.divisas[this.currency].casa.compra);
+    console.log('La conversión es: ' + this.valor);
+    this.btc = parseFloat(this.divisas[this.currency].casa.compra);
   }
 
   private getInterpretation(imc: number): string {
