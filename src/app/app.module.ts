@@ -20,6 +20,8 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DolarConvertComponent } from './components/dolar-convert/dolar-convert.component';
+import { MonedasConvertComponent } from './components/monedas-convert/monedas-convert.component';
+import { FormsModule } from '@angular/forms'; // <- Importa FormsModule
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import { DolarConvertComponent } from './components/dolar-convert/dolar-convert.
     BuscadorComponent,
     HeroeTarjetaComponent,
     ContactComponent,
-    DolarConvertComponent
+    DolarConvertComponent,
+    MonedasConvertComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    APP_ROUTING
+    APP_ROUTING,
+    FormsModule // <- Agrega FormsModule a los imports
   ],
   providers: [
     HeroesService,

@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="card">
+      <h5 class="card-header bg-primary text-white">Conversión de Moneda</h5>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="valor">Valor a Convertir:</label>
+          <input type="number" class="form-control" id="valor" [(ngModel)]="valor">
+        </div>
+        <div class="form-group">
+          <label for="monedaOrigen">De:</label>
+          <select class="form-control" id="monedaOrigen" [(ngModel)]="monedaOrigen">
+            <option value="peso">Peso</option>
+            <option value="dolar">Dólar</option>
+            <option value="euro">Euro</option>
+            <option value="real">Real</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="monedaDestino">A:</label>
+          <select class="form-control mb-5" id="monedaDestino" [(ngModel)]="monedaDestino">
+            <option value="peso">Peso</option>
+            <option value="dolar">Dólar</option>
+            <option value="euro">Euro</option>
+            <option value="real">Real</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" (click)="convertir()">Convertir</button>
+        <br><br>
+        <p class="mt-3" *ngIf="resultado">Resultado: {{resultado}}</p>
+      </div>
+    </div>
+  </div>
