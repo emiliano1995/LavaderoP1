@@ -15,6 +15,14 @@ export class MonedasConvertComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  //Calculador IMC
+  weight: number = 0;
+  height: number = 0;
+  imc: number = 0;
+  imcInterpretation: string = "";
+
+  //Conversor Monedas
   peso: number = 1;
   valor: number = 0; 
   monedaOrigen: string = '';
@@ -52,6 +60,24 @@ export class MonedasConvertComponent implements OnInit {
         return this.euro;
       case 'real':
         return this.real;
+    }
+  }
+
+  calculateIMC() {
+    const heightInMeters = parseInt((<HTMLInputElement>document.getElementById('height')).value) / 100;
+    this.imc = parseInt((<HTMLInputElement>document.getElementById('weight')).value) / (heightInMeters * heightInMeters);
+    this.imcInterpretation = this.getInterpretation(this.imc);
+  }
+
+  private getInterpretation(imc: number): string {
+    if (imc < 18.5) {
+      return 'Bajo peso';
+    } else if (imc < 25) {
+      return 'Peso normal';
+    } else if (imc < 30) {
+      return 'Sobrepeso';
+    } else {
+      return 'Obesidad';
     }
   }
 
