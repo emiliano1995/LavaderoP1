@@ -29,9 +29,9 @@ export class MonedasConvertComponent implements OnInit {
   monedaDestino: string = '';
   resultado: number = 0;
   //COTIZACIONES
-  dolar: number = 230;
-  euro: number = 250;
-  real: number = 40;
+  dolar: number = 248.50;
+  euro: number = 267;
+  real: number = 51.45;
 
   convertir() {
     switch(this.monedaOrigen) {
