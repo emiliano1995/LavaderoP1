@@ -22,6 +22,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { DolarConvertComponent } from './components/dolar-convert/dolar-convert.component';
 import { MonedasConvertComponent } from './components/monedas-convert/monedas-convert.component';
 import { FormsModule } from '@angular/forms'; // <- Importa FormsModule
+import { AuthModule } from '@auth0/auth0-angular';
 
 
 @NgModule({
@@ -43,6 +44,13 @@ import { FormsModule } from '@angular/forms'; // <- Importa FormsModule
     BrowserModule,
     AppRoutingModule,
     APP_ROUTING,
+    AuthModule.forRoot({
+      domain: 'dev-g4llofp4fbls07nw.us.auth0.com',
+      clientId: 'jswybq3M4ezletgJAwEsHQUs25OJt5ef',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
     FormsModule // <- Agrega FormsModule a los imports
   ],
   providers: [
