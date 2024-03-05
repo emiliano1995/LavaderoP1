@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DolarConvertService } from "../../Servicios/dolar-convert.service";
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dolar-convert',
@@ -9,7 +10,7 @@ import { DolarConvertService } from "../../Servicios/dolar-convert.service";
 export class DolarConvertComponent implements OnInit {
 
   //Conversor Divisas
-  divisas:any[] = [];
+  divisas:any;
   valorUsd: number = 0;
   resultadoUsd: number = 0;
   valorArs: number = 0;
@@ -31,39 +32,43 @@ export class DolarConvertComponent implements OnInit {
   imc: number = 0;
   imcInterpretation: string = "";
 
-  constructor(private _dolarConvertService: DolarConvertService) { }
+  constructor(public _dolarConvertService: DolarConvertService) { }
 
   async ngOnInit() {
     console.log('datos listos')
     this.divisas = await this._dolarConvertService.getDolarApi();
-    console.log(this.divisas);
+    const valorAED = this.divisas.data.ARS.value;
+    console.log('El valor de ARS es: ' + valorAED);
   }
 
   obtenerValorUsd() {
     this.valorUsd = parseFloat((<HTMLInputElement>document.getElementById('inputValorUsd')).value)
     console.log(typeof this.valorUsd);
     console.log('El valorUsd ingresado es: ' + this.valorUsd);
-    this.resultadoUsd = parseFloat(this.divisas[1].casa.venta) * this.valorUsd;
+    console.log()
+    this.resultadoUsd = parseFloat(this.divisas.data.ARS.value) * this.valorUsd;
     console.log('La conversión de USD a ARS es: ' + this.resultadoUsd);
-    this.usdVenta = parseFloat(this.divisas[1].casa.venta);
+    this.usdVenta = parseFloat(this.divisas.data.ARS.value);
   }
+
+  
 
   obtenerValorArs() {
     this.valorArs = parseFloat((<HTMLInputElement>document.getElementById('inputValorArs')).value)
     console.log(typeof this.valorArs);
     console.log('El valorArs ingresado es: ' + this.valorArs);
-    this.resultadoArs = this.valorArs / parseFloat(this.divisas[1].casa.compra);
-    console.log('La conversión de ARS a USD(Blue Comp) es: ' + this.resultadoArs);
-    this.usdCompra = parseFloat(this.divisas[1].casa.compra);
+    this.resultadoArs = this.valorArs / parseFloat(this.divisas.data.ARS.value);
+    console.log('La conversión de ARS a USD(oficial) es: ' + this.resultadoArs);
+    this.usdCompra = parseFloat(this.divisas.data.ARS.value);
   }
 
   obtenerValorBtcUsd() {
     this.valorBtcArs = parseFloat((<HTMLInputElement>document.getElementById('inputValorBtcArs')).value)
     console.log(typeof this.valorBtcArs);
     console.log('El valorArs ingresado es: ' + this.valorBtcArs);
-    this.resultadoBtcArs = this.valorBtcArs / parseFloat(this.divisas[5].casa.compra);
+    this.resultadoBtcArs = this.valorBtcArs / parseFloat(this.divisas.data.BTC.value) * parseFloat(this.divisas.data.ARS.value);
     console.log('La conversión de ARS a USD(Blue Comp) es: ' + this.valorBtcArs);
-    this.btc = parseFloat(this.divisas[5].casa.compra);
+    this.btc = parseFloat(this.divisas.data.BTC.value);
   }
 
   calculateIMC() {

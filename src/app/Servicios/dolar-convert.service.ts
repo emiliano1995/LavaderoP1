@@ -13,7 +13,7 @@ export class DolarConvertService {
 
   async getDolarApi() {
     try {
-      const resolve = await axios.get('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
+      const resolve : any = await axios.get('https://api.currencyapi.com/v3/latest?apikey=cur_live_vyzf8nqMsynC6NNXnQCayQfnQkQSQYgGu5QjHZq8&currencies=');
       const data = resolve.data;
       return data;
     } catch (error) {
